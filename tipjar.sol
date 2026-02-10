@@ -40,11 +40,21 @@ contract tips {
         _;
     }
 
-    function addWaitress(address payable walletAddress, string memory name, uint percent) public onlyOwner {
+    function addWaitress(
+        address payable walletAddress,
+        string memory name,
+        uint percent
+    ) public onlyOwner {
         bool waitressExist = false;
-        if(waitress.length >= 1){ ... } // Check Logic
+        if (waitress.length >= 1) {
+            for (uint i = 0; i < waitress.length; i++) {
+                if (waitress[i].walletAddress == walletAddress) {
+                    waitressExist = true;
+                }
+            }
+        }
 
-        if(waitressExist == false){
+        if (waitressExist == false) {
             waitress.push(Waitress(walletAddress, name, percent));
         }
     }
