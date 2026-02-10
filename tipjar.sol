@@ -34,4 +34,18 @@ contract tips {
     function viewWaitress() public view returns (Waitress[] memory) {
         return waitress;
     }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call");
+        _;
+    }
+
+    function addWaitress(address payable walletAddress, string memory name, uint percent) public onlyOwner {
+        bool waitressExist = false;
+        if(waitress.length >= 1){ ... } // Check Logic
+
+        if(waitressExist == false){
+            waitress.push(Waitress(walletAddress, name, percent));
+        }
+    }
 }
