@@ -132,11 +132,11 @@
 	},
 	"sources": {
 		"tipjar.sol": {
-			"keccak256": "0x4d01e0829083f52222b7813a7b2f1a6103ee6a53f4fe234c08f9590065e78ec1",
+			"keccak256": "0xcd090ae5b88bf2aeea35a374a7b526b1a9d0188f375eaea0f1b3fdc0b01bfd72",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d4b2f315b3a03936f8c6e7a89dbef5629d1661d5548a6fe1d9858c936d24f7dc",
-				"dweb:/ipfs/QmZAFzdx9jJNCErsmc87BoRKhbuSucHy8wRsWjQHkWj5W5"
+				"bzz-raw://aadf3bc553ec9671aacdd399205a9b04aa48bb1186ad16cc46efbe59ddc528c6",
+				"dweb:/ipfs/QmZ5AWPqqnE2ZGkLq9f93BT79bssphU3mHsNaym5iq7LWG"
 			]
 		}
 	},

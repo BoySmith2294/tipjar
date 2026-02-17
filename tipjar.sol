@@ -46,16 +46,25 @@ contract tips {
         uint percent
     ) public onlyOwner {
         bool waitressExist = false;
-        if (waitress.length >= 1) {
-            for (uint i = 0; i < waitress.length; i++) {
-                if (waitress[i].walletAddress == walletAddress) {
-                    waitressExist = true;
-                }
+        uint totalPercent = 0; // ตัวแปรสำหรับเก็บผลรวมเปอร์เซ็นต์ทั้งหมด
+
+        // 1. วน Loop ครั้งเดียวเพื่อเช็คทั้ง "มีอยู่แล้วหรือยัง" และ "รวมเปอร์เซ็นต์ปัจจุบัน"
+        for (uint i = 0; i < waitress.length; i++) {
+            if (waitress[i].walletAddress == walletAddress) {
+                waitressExist = true;
             }
+            totalPercent += waitress[i].percent;
         }
 
+        // 2. ตรวจสอบว่าถ้าเพิ่มคนนี้เข้าไปแล้ว จะเกิน 100% หรือไม่
+        // หากเกิน 100 ระบบจะหยุดการทำงานและแจ้ง Error Message ทันที
+        require(totalPercent + percent <= 100, "Total percentage exceeds 100%");
+
+        // 3. ถ้ายังไม่เคยมี Address นี้ และเปอร์เซ็นต์ยังไม่เกิน 100 ให้เพิ่มข้อมูลได้
         if (waitressExist == false) {
             waitress.push(Waitress(walletAddress, name, percent));
+        } else {
+            revert("Waitress already exists"); // (Optional) แจ้งเตือนถ้ามีชื่อซ้ำ
         }
     }
 
